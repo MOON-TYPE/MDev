@@ -53,8 +53,8 @@ $RECYCLE.BIN/
 Assets/_Content/GUI
  
 # COPYRIGHTED / ASSET STORE
-{Carpeta proyecto}/Assets/ThirdParty/*
-{Carpeta proyecto}/Assets/ThirdParty.meta
+MDev Project/Assets/ThirdParty/*
+MDev Project/Assets/ThirdParty.meta
  
 # GITEYE
 *.project
