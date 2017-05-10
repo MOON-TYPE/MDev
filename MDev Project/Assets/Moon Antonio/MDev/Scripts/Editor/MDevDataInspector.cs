@@ -69,6 +69,8 @@ namespace MoonAntonio.MDev
 			myTarget.Comandos.Add(new Comando());
 			myTarget.Comandos[myTarget.Comandos.Count - 1].NombreComando = value;
 			myTarget.Comandos[myTarget.Comandos.Count - 1].Activo = true;
+
+			EditorUtility.SetDirty(this);
 		}
 
 		public void RemoveComando(int id)
@@ -76,6 +78,8 @@ namespace MoonAntonio.MDev
 			MDevData myTarget = (MDevData)target;
 
 			myTarget.Comandos.RemoveAt(id);
+
+			EditorUtility.SetDirty(this);
 		}
 	}
 }

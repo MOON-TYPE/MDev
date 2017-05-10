@@ -11,3 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff31fc3a5fee2a44bb225a17431501bd, type: 3}
   m_Name: MDevData
   m_EditorClassIdentifier: 
+  Comandos: []

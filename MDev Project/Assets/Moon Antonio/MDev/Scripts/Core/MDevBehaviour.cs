@@ -36,7 +36,15 @@ namespace MoonAntonio.MDev
 		/// <summary>
 		/// <para>Texto autocompletado</para>
 		/// </summary>
-		public UILabel textAutocompletado;							// Texto autocompletado
+		public UILabel textAutocompletado;                          // Texto autocompletado
+		/// <summary>
+		/// <para>Data de los comandos</para>
+		/// </summary>
+		public MDevData comandosData;								// Data de los comandos
+		/// <summary>
+		/// <para>Lista con los comandos para el predictor</para>
+		/// </summary>
+		public List<string> comandos = new List<string>();			// Lista con los comandos para el predictor
 		#endregion
 
 		#region Variables Estaticas
@@ -57,9 +65,6 @@ namespace MoonAntonio.MDev
 		private string texto = "";									// Texto predictivo
 		#endregion
 
-		// test
-		public List<string> comandos = new List<string>();
-
 		#region Inicializadores
 		/// <summary>
 		/// <para>Inicializa MDevBehaviour</para>
@@ -67,6 +72,11 @@ namespace MoonAntonio.MDev
 		private void Start()// Inicializa MDevBehaviour
 		{
 			mInput.label.maxLineCount = 1;
+
+			for (int n = 0; n < comandosData.Comandos.Count; n++)
+			{
+				comandos.Add(comandosData.Comandos[n].NombreComando);
+			}
 		}
 		#endregion
 
@@ -117,24 +127,39 @@ namespace MoonAntonio.MDev
 			}
 		}
 
-		public void ComprobarComando(string value)
+		/// <summary>
+		/// <para>Comprueba el comando</para>
+		/// </summary>
+		/// <param name="value"></param>
+		public void ComprobarComando(string value)// Comprueba el comando
 		{
 			string temp = value;
 			string temp2 = string.Empty;
 
-			temp2 = temp.Replace(".", "");
-			Debug.Log(temp2);
-
-			for (int n = 0; n < comandos.Count; n++)
+			for (int n = 0; n < comandosData.Comandos.Count; n++)
 			{
-				if (comandos[n] == value)
+				if (comandosData.Comandos[n].NombreComando == value)
 				{
-					if (!IsInvoking(temp2)) Invoke(temp2, 0f);
+					temp2 = temp.Replace(".", "");
+
+					if (comandosData.Comandos[n].Activo == true)
+					{
+						if (!IsInvoking(temp2)) Invoke(temp2, 0f);
+					}
+				}
+				else
+				{
+					consolaReport.Add("> Ese comando no existe.");
+					mInput.value = "";
+					mInput.isSelected = false;
 				}
 			}
 		}
 
-		public void Intellisent()
+		/// <summary>
+		/// <para>Intellisent del input</para>
+		/// </summary>
+		public void Intellisent()// Intellisent del input
 		{
 			string oldString = texto;
 			texto = mInput.value;
@@ -161,7 +186,6 @@ namespace MoonAntonio.MDev
 			consolaReport.Add("> .help -> Muestra la lista de comandos.");
 			consolaReport.Add("> .devDebug.enable/disable -> Activa/Desactiva el debug.");
 			consolaReport.Add("> .devMando.enable/disable -> Activa/Desactiva el mando de referenciacion.");
-			consolaReport.Add("> .devNotifi.enable/disable -> Activa/Desactiva las notificaciones visuales.");
 			mInput.value = "";
 			mInput.isSelected = false;
 		}
