@@ -287,7 +287,6 @@ GameObject:
   - component: {fileID: 4155855723282606}
   - component: {fileID: 114535431036079872}
   - component: {fileID: 65391225368872362}
-  - component: {fileID: 114456203213990974}
   m_Layer: 5
   m_Name: Consola
   m_TagString: Untagged
@@ -1918,11 +1917,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4032dc3889097214caed02e8b59b68b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textList: {fileID: 114519169997246588}
+  consolaReport: {fileID: 114519169997246588}
   mInput: {fileID: 114956202545436064}
   mando: {fileID: 1648682839951882}
   textAutocompletado: {fileID: 114297764896997466}
-  comandos: []
+  comandos:
+  - .help
+  - .devDebug.enable
 --- !u!114 &114417978479801896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1997,17 +1998,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 62adb30369acbf943a67cee0f69267a3, type: 2}
   mSpriteName: Resize Icon
   mFillCenter: 1
---- !u!114 &114456203213990974
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1476010349953940}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114517512735385960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2696,7 +2686,7 @@ MonoBehaviour:
   caretColor: {r: 0.41791046, g: 0.41791046, b: 0.41791046, a: 0.8}
   selectionColor: {r: 0.47014928, g: 0.33817756, b: 0, a: 0.5019608}
   onSubmit:
-  - mTarget: {fileID: 114456203213990974}
+  - mTarget: {fileID: 114400292884937532}
     mMethodName: OnSubmit
     mParameters: []
     oneShot: 0
