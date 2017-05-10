@@ -135,13 +135,12 @@ namespace MoonAntonio.MDev
 		{
 			string temp = value;
 			string temp2 = string.Empty;
+			temp2 = temp.Replace(".", "");
 
 			for (int n = 0; n < comandosData.Comandos.Count; n++)
 			{
 				if (comandosData.Comandos[n].NombreComando == value)
 				{
-					temp2 = temp.Replace(".", "");
-
 					if (comandosData.Comandos[n].Activo == true)
 					{
 						if (!IsInvoking(temp2)) Invoke(temp2, 0f);
@@ -149,9 +148,9 @@ namespace MoonAntonio.MDev
 				}
 				else
 				{
-					consolaReport.Add("> Ese comando no existe.");
+					/*consolaReport.Add("> Ese comando no existe.");
 					mInput.value = "";
-					mInput.isSelected = false;
+					mInput.isSelected = false;*/
 				}
 			}
 		}
