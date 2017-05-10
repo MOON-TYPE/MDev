@@ -21,30 +21,60 @@ namespace MoonAntonio.MDev
 	public class MDevBehaviour : MonoBehaviour 
 	{
 		#region Variables Publicas
-		public UITextList textList;
-		public UIInput mInput;
-		public GameObject mando;
-		public UILabel textAutocompletado;
+		/// <summary>
+		/// <para>Area de la consola visual</para>
+		/// </summary>
+		public UITextList consolaReport;							// Area de la consola visual
+		/// <summary>
+		/// <para>Area de la consola donde escribir</para>
+		/// </summary>
+		public UIInput mInput;										// Area de la consola donde escribir
+		/// <summary>
+		/// <para>Root de mando</para>
+		/// </summary>
+		public GameObject mando;									// Root de mando
+		/// <summary>
+		/// <para>Texto autocompletado</para>
+		/// </summary>
+		public UILabel textAutocompletado;							// Texto autocompletado
 		#endregion
 
 		#region Variables Estaticas
-		public static bool devDebug = true;
-		public static bool devMando = true;
+		/// <summary>
+		/// <para>Activar/Desactivar debug</para>
+		/// </summary>
+		public static bool devDebug = true;							// Activar/Desactivar debug
+		/// <summary>
+		/// <para>Activar/Desactivar mando</para>
+		/// </summary>
+		public static bool devMando = true;							// Activar/Desactivar mando
+		#endregion
+
+		#region Variables Privadas
+		/// <summary>
+		/// <para>Texto predictivo</para>
+		/// </summary>
+		private string texto = "";									// Texto predictivo
 		#endregion
 
 		// test
 		public List<string> comandos = new List<string>();
-		string texto = "";
 
 		#region Inicializadores
-		private void Start()
+		/// <summary>
+		/// <para>Inicializa MDevBehaviour</para>
+		/// </summary>
+		private void Start()// Inicializa MDevBehaviour
 		{
 			mInput.label.maxLineCount = 1;
 		}
 		#endregion
 
 		#region Actualizadores
-		private void Update()
+		/// <summary>
+		/// <para>Actualizador de MDevBehaviour</para>
+		/// </summary>
+		private void Update()// Actualizador de MDevBehaviour
 		{
 			Intellisent();
 
@@ -74,7 +104,7 @@ namespace MoonAntonio.MDev
 		/// </summary>
 		public void OnSubmit()
 		{
-			if (textList != null)
+			if (consolaReport != null)
 			{
 				// Es una buena idea eliminar todos los símbolos, ya que no queremos que la entrada del usuario altere los colores, agregue nuevas lineas, etc.
 				string text = NGUIText.StripSymbols(mInput.value);
@@ -89,59 +119,19 @@ namespace MoonAntonio.MDev
 
 		public void ComprobarComando(string value)
 		{
-			switch (value)
+			string temp = value;
+			string temp2 = string.Empty;
+
+			temp2 = temp.Replace(".", "");
+			Debug.Log(temp2);
+
+			for (int n = 0; n < comandos.Count; n++)
 			{
-				#region Mist
-				case ".help":
-					textList.Add("> .help -> Muestra la lista de comandos.");
-					textList.Add("> .devDebug.enable/disable -> Activa/Desactiva el debug.");
-					textList.Add("> .devMando.enable/disable -> Activa/Desactiva el mando de referenciacion.");
-					textList.Add("> .devNotifi.enable/disable -> Activa/Desactiva las notificaciones visuales.");
-					mInput.value = "";
-					mInput.isSelected = false;
-					break;
-
-				case "exit()":
-					Application.Quit();
-					mInput.value = "";
-					mInput.isSelected = false;
-					break;
-				#endregion
-
-				#region devDebug
-
-				case ".devDebug.enable":
-					devDebug = true;
-					textList.Add("> El debug de la consola a sido activado.");
-					mInput.value = "";
-					mInput.isSelected = false;
-					break;
-
-				case ".devDebug.disable":
-					devDebug = false;
-					textList.Add("> El debug de la consola a sido desactivado.");
-					mInput.value = "";
-					mInput.isSelected = false;
-					break;
-				#endregion
-
-				#region devMando
-				case ".devMando.enable":
-					devMando = true;
-					textList.Add("> El visualizador del input esta activado.");
-					mInput.value = "";
-					mInput.isSelected = false;
-					break;
-
-				case ".devMando.disable":
-					devMando = false;
-					textList.Add("> El visualizador del input esta desactivado.");
-					mInput.value = "";
-					mInput.isSelected = false;
-					break;
-				#endregion
+				if (comandos[n] == value)
+				{
+					if (!IsInvoking(temp2)) Invoke(temp2, 0f);
+				}
 			}
-
 		}
 
 		public void Intellisent()
@@ -162,6 +152,57 @@ namespace MoonAntonio.MDev
 			{
 				mInput.value = textAutocompletado.text;
 			}
+		}
+		#endregion
+
+		#region Comandos
+		public void help()
+		{
+			consolaReport.Add("> .help -> Muestra la lista de comandos.");
+			consolaReport.Add("> .devDebug.enable/disable -> Activa/Desactiva el debug.");
+			consolaReport.Add("> .devMando.enable/disable -> Activa/Desactiva el mando de referenciacion.");
+			consolaReport.Add("> .devNotifi.enable/disable -> Activa/Desactiva las notificaciones visuales.");
+			mInput.value = "";
+			mInput.isSelected = false;
+		}
+
+		public void exit()
+		{
+			Application.Quit();
+			mInput.value = "";
+			mInput.isSelected = false;
+		}
+
+		public void devDebugenable()
+		{
+			devDebug = true;
+			consolaReport.Add("> El debug de la consola a sido activado.");
+			mInput.value = "";
+			mInput.isSelected = false;
+		}
+
+		public void devDebugdisable()
+		{
+			devDebug = false;
+			consolaReport.Add("> El debug de la consola a sido desactivado.");
+			mInput.value = "";
+			mInput.isSelected = false;
+		}
+
+		public void devMandoenable()
+		{
+			devMando = true;
+			consolaReport.Add("> El visualizador del input esta activado.");
+			mInput.value = "";
+			mInput.isSelected = false;
+		}
+
+		public void devMandodisable()
+		{
+			devMando = false;
+			consolaReport.Add("> El visualizador del input esta desactivado.");
+			mInput.value = "";
+			mInput.isSelected = false;
 		}
 		#endregion
 	}
