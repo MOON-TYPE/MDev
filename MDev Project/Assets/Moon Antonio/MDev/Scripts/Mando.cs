@@ -21,6 +21,7 @@ namespace MoonAntonio.MDev
 	[AddComponentMenu("Moon Antonio/MDev/Mando")]
 	public class Mando : MonoBehaviour 
 	{
+		#region Variables Publicas
 		/// <summary>
 		/// <para>Controlador de pad.</para>
 		/// </summary>
@@ -29,9 +30,13 @@ namespace MoonAntonio.MDev
         /// <para>Llamada al controlador.</para>
         /// </summary>
         public bool llamadaControles = false;                                           // Llamada al controlador
+		/// <summary>
+		/// <para>Botones ui</para>
+		/// </summary>
+		public List<UISprite> botones = new List<UISprite>();                           // Botones ui
+		#endregion
 
-		public List<UISprite> botones = new List<UISprite>();
-
+		#region Inicializadores
 		/// <summary>
 		/// <para>Inicializa los controles.</para>
 		/// </summary>
@@ -58,12 +63,19 @@ namespace MoonAntonio.MDev
 				XCI.DEBUG_LogControllerNames();
 			}
 		}
+		#endregion
 
-		private void Update()
+		#region Actualizadores
+		/// <summary>
+		/// <para>Actualizador de Mando</para>
+		/// </summary>
+		private void Update()// Actualizador de Mando
 		{
 			ActualizarControles();
 		}
+		#endregion
 
+		#region Metodos
 		/// <summary>
 		/// <para>Actualiza el estado de los controles.</para>
 		/// </summary>
@@ -177,5 +189,6 @@ namespace MoonAntonio.MDev
 				botones[11].color = Color.white;
 			}
 		}
+		#endregion
 	}
 }
