@@ -11,8 +11,13 @@
 using UnityEngine;
 #endregion
 
-namespace MoonAntonio
+namespace MoonAntonio.MDev
 {
+	/// <summary>
+	/// <para>Clase de los comandos de MDev</para>
+	/// </summary>
+	[AddComponentMenu("Moon Antonio/MDev/Comando")]
+	[System.Serializable]
 	public class Comando 
 	{
 		#region Propiedades
@@ -24,6 +29,16 @@ namespace MoonAntonio
 		{
 			set { nombreComando = value; }
 			get {  return nombreComando; }
+		}
+
+		private bool activo;
+		/// <summary>
+		/// <para>Define si esta activo el comando o no</para>
+		/// </summary>
+		public bool Activo
+		{
+			set { activo = value; }
+			get { return activo; }
 		}
 		#endregion
 	}
