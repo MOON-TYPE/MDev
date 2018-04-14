@@ -19,6 +19,7 @@ ExportedObj/
 *.user
 *.unityproj
 *.booproj
+*.vs
  
 # ===================================== #
 # OS 
@@ -55,6 +56,7 @@ Assets/_Content/GUI
 # COPYRIGHTED / ASSET STORE
 MDev Project/Assets/ThirdParty/*
 MDev Project/Assets/ThirdParty.meta
+dev/*
  
 # GITEYE
 *.project
