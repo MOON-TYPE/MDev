@@ -38,5 +38,21 @@ namespace MoonAntonio.MDev
 		public int AutoCompletarIndex { get; private set; }
 		public string MDevLinea { get { return (data.nombreMDev + data.direccion + data.marcador + " "); } }
 		#endregion
+
+		#region Metodos Publicos
+		public void PreEjecutar()
+		{
+			/*string result = ExecuteCommand(InputText);
+			Historial += MDevLinea + InputText + "\n" + (!string.IsNullOrEmpty(result) ? (result + "\n") : "");
+			InputText = "";*/
+		}
+		#endregion
+
+		#region Metodos Internos
+		internal void CambiarInput(string input)
+		{
+			InputText = input;
+		}
+		#endregion
 	}
 }
