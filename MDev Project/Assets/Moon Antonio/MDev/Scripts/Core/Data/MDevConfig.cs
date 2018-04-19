@@ -56,7 +56,15 @@ namespace MoonAntonio.MDev
 		/// <summary>
 		/// <para>Color del texto autocompletado de MDev.</para>
 		/// </summary>
-		public Color colorAutoCompletar;												// Color del texto autocompletado de MDev
+		public Color colorAutoCompletar;                                                // Color del texto autocompletado de MDev
+		/// <summary>
+		/// <para>Tecla para abrir/cerrar MDev.</para>
+		/// </summary>
+		public KeyCode keyToggle;														// Tecla para abrir/cerrar MDev
+		/// <summary>
+		/// <para>Numero de toques para abrir MDev.</para>
+		/// </summary>
+		public int mobileTouchCount;                                                    // Numero de toques para abrir MDev
 		#endregion
 	}
 }
