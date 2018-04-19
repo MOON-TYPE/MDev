@@ -1,40 +1,57 @@
 ﻿//                                  ┌∩┐(◣_◢)┌∩┐
 //																				\\
-// MDevInput.cs (00/00/0000)													\\
+// MDevInput.cs (19/04/2018)													\\
 // Autor: Antonio Mateo (.\Moon Antonio) 	antoniomt.moon@gmail.com			\\
-// Descripcion:																	\\
-// Fecha Mod:		00/00/0000													\\
-// Ultima Mod:																	\\
+// Descripcion:		Manager de las entradas del usuario.						\\
+// Fecha Mod:		19/04/2018													\\
+// Ultima Mod:		Version Inicial												\\
 //******************************************************************************\\
 
 #region Librerias
 using UnityEngine;
-using System;
 #endregion
 
 namespace MoonAntonio.MDev
 {
 	/// <summary>
-	/// <para></para>
+	/// <para>Manager de las entradas del usuario.</para>
 	/// </summary>
 	public class MDevInput
 	{
 		#region Variables Privadas
-		private MDev mdev;
-		private float touchDelay = 1.5f;
-		private float tiempo = 0f;
+		/// <summary>
+		/// <para>Instancia de MDev.</para>
+		/// </summary>
+		private MDev mdev;												// Instancia de MDev
+		/// <summary>
+		/// <para>Tiempo de CD.</para>
+		/// </summary>
+		private float touchDelay = 1.5f;								// Tiempo de CD
+		/// <summary>
+		/// <para>Tiempo transcurrido.</para>
+		/// </summary>
+		private float tiempo = 0f;										// Tiempo transcurrido
 		#endregion
 
 		#region Constructor
-		public MDevInput(MDev instance)
+		/// <summary>
+		/// <para>Constructor de <see cref="MDevInput"/>.</para>
+		/// </summary>
+		/// <param name="instance"></param>
+		public MDevInput(MDev instance)// Constructor de MDevInput
 		{
 			mdev = instance;
 		}
 		#endregion
 
 		#region Actualizador
-		public void Update()
+		/// <summary>
+		/// <para>Actualizador de <see cref="MDevInput"/>.</para>
+		/// </summary>
+		public void Update()// Actualizador de MDevInput
 		{
+			#region Plataforma
+			// Comprobacion de plataformas
 			if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
 			{
 				if (MobileInput())
@@ -43,13 +60,19 @@ namespace MoonAntonio.MDev
 					return;
 				}
 			}
+			#endregion
 
+			#region Input Init
+			// Key para mostrar/ocultar MDev
 			if (Input.GetKeyDown(mdev.data.keyToggle))
 			{
 				mdev.ToggleMDev();
 				return;
 			}
+			#endregion
 
+			#region Eventos
+			// Si no se esta mostrando MDev, volver
 			if (!mdev.MostrarMDev) return;
 			if (Input.GetKeyDown(KeyCode.Backspace))
 			{
@@ -76,16 +99,21 @@ namespace MoonAntonio.MDev
 			else if (Input.GetKeyDown(KeyCode.UpArrow))
 			{
 				mdev.OnUpArrowPresionado();
-			}	
+			}
 			else
 			{
 				if (Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer) mdev.UpdateInputText(Input.inputString);
 			}
+			#endregion
 		}
 		#endregion
 
 		#region Funcionalidad
-		private bool MobileInput()
+		/// <summary>
+		/// <para>Inputs de mobile.</para>
+		/// </summary>
+		/// <returns></returns>
+		private bool MobileInput()// Inputs de mobile
 		{
 			// Si hay teclado
 			if (mdev.touchScreenKeyboard != null)
