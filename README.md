@@ -8,7 +8,7 @@
 
 MDev es una consola, para Unity3D, con la que puedes llamar a comandos predefinidos anteriormente y llamarlos en runtime.
 
-![img01](https://github.com/MOON-TYPE/MDev/blob/master/res/imgPrev.png?raw=true)
+![img01](https://github.com/MOON-TYPE/MDev/blob/master/res/prev.gif?raw=true)
 
 ---
 

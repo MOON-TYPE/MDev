@@ -15,8 +15,8 @@ MonoBehaviour:
   direccion: 
   nombreMDev: MDev
   font: {fileID: 12800000, guid: 862b736ca58345146adaea3314dca321, type: 3}
-  colorTexto: {r: 0.14117648, g: 0.95686275, b: 0.08627451, a: 1}
+  colorTexto: {r: 1, g: 1, b: 1, a: 1}
   colorBG: {r: 0, g: 0, b: 0, a: 0}
-  colorAutoCompletar: {r: 0.09411765, g: 0.1764706, b: 1, a: 1}
+  colorAutoCompletar: {r: 1, g: 0.09411764, b: 0.928, a: 1}
   keyToggle: 282
   mobileTouchCount: 4
