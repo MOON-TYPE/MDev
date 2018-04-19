@@ -44,7 +44,7 @@ namespace MoonAntonio.MDev
 				}
 			}
 
-			if (Input.GetKeyDown(KeyCode.LeftAlt))
+			if (Input.GetKeyDown(mdev.data.keyToggle))
 			{
 				mdev.ToggleMDev();
 				return;
